@@ -21,6 +21,7 @@ public class Like {
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime dateTime;
 
+    private String type;
 
     public LikeId getId() {
         return id;

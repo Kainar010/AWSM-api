@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "post_id")
     private Long id;
 
     @ManyToOne
@@ -19,6 +20,9 @@ public class Post {
 
     @Column(name = "post_description")
     private String description;
+
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private ArrayList<Media> media;
 
     @Column(name = "post_date")
     @UpdateTimestamp
@@ -51,6 +55,14 @@ public class Post {
         return description;
     }
 
+    public ArrayList<Media> getMedia() {
+        return media;
+    }
+
+    public void setMedia(ArrayList<Media> media) {
+        this.media = media;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -63,11 +75,11 @@ public class Post {
         this.dateTime = dateTime;
     }
 
-    public Integer getCountOfLikes() {
+    public int getCountOfLikes() {
         return countOfLikes;
     }
 
-    public void setCountOfLikes(Integer countOfLikes) {
+    public void setCountOfLikes(int countOfLikes) {
         this.countOfLikes = countOfLikes;
     }
 

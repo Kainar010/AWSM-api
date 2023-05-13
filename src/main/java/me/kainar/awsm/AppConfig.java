@@ -29,7 +29,7 @@ public class AppConfig {
     @Value("${jdbc.url}")
     private String jdbcUrl;
 
-    @Value("${jdbc.user")
+    @Value("${jdbc.username}")
     private String jdbcUserName;
 
     @Value("${jdbc.password}")
@@ -51,7 +51,7 @@ public class AppConfig {
     public LocalSessionFactoryBean createSessionFactory(@Autowired DataSource dataSource){
         Properties properties = new Properties();
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-        properties.setProperty("hibernate.hbm2ddl.auto", "update"); // 生产环境不要使用
+        properties.setProperty("hibernate.hbm2ddl.auto", "update");
         properties.setProperty("hibernate.show_sql", "true");
 
         LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
@@ -97,6 +97,14 @@ public class AppConfig {
         Session session = Session.getInstance(properties, authenticator);
         session.setDebug(true);
         return session;
+    }
+
+    @Value("/home/kainar/desktop/AWSM_media/")
+    private String mediaPath;
+
+    @Bean
+    public String getMediaPath(){
+        return mediaPath;
     }
 
 }
