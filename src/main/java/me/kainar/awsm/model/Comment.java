@@ -29,6 +29,9 @@ public class Comment {
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime dateTime;
 
+    @Column
+    private int countOfLike;
+
 
     public Long getId() {
         return id;
@@ -68,5 +71,13 @@ public class Comment {
 
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public int getCountOfLike() {
+        return countOfLike;
+    }
+
+    public void setCountOfLike(int countOfLike) {
+        this.countOfLike = countOfLike;
     }
 }

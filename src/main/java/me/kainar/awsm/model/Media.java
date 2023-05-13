@@ -1,8 +1,6 @@
 package me.kainar.awsm.model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Formula;
-import org.springframework.core.io.Resource;
 
 import java.io.File;
 
@@ -11,22 +9,48 @@ import java.io.File;
 public class Media {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "media_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
     private Post post;
 
     @Column(name = "media_type")
     private String type;
 
-    private File file;
+    @Column(name = "media_path")
+    private String path;
 
-    public File getFile() {
-        if(file!=null){
-            return file;
-        }
+    public Long getId() {
+        return id;
+    }
 
-        return null;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 }
